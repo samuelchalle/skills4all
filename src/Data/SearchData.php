@@ -20,6 +20,7 @@ class SearchData
     public function setName(?string $name): SearchData
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ class SearchData
     public function setCarCategory(?CarCategory $carCategory): SearchData
     {
         $this->carCategory = $carCategory;
+
         return $this;
     }
 }

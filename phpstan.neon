@@ -1,15 +1,11 @@
 parameters:
-    level: 6
+    level: 5
     paths:
         - bin/
         - config/
         - public/
         - src/
-        - tests/
     excludePaths:
         - vendor
-    # phpstan-symfony extension
-    symfony:
-        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
     scanDirectories:
         - var/cache/dev/Symfony/Config

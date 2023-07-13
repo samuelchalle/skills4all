@@ -24,5 +24,4 @@ class CarFixtures extends Fixture implements DependentFixtureInterface
             CarCategoryFixtures::class,
         ];
     }
-
 }

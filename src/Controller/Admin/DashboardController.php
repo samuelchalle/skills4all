@@ -18,9 +18,9 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
 
-         return $this->redirect($adminUrlGenerator->setController(CarCrudController::class)->generateUrl());
+        return $this->redirect($adminUrlGenerator->setController(CarCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard

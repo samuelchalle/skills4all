@@ -26,7 +26,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Car[]|Proxy[]                 findBy(array $attributes)
  * @method static Car[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
  * @method static Car[]|Proxy[]                 randomSet(int $number, array $attributes = [])
- *
  */
 final class CarFactory extends ModelFactory
 {

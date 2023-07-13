@@ -21,5 +21,4 @@ class CarCategoryCrudController extends AbstractCrudController
             TextField::new('name'),
         ];
     }
-
 }

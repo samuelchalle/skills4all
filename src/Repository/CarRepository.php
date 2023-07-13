@@ -25,21 +25,21 @@ class CarRepository extends ServiceEntityRepository
     public function findSearch(SearchData $search): array
     {
         $query = $this
-            ->createQueryBuilder( 'car' );
+            ->createQueryBuilder('car');
 
-        if(!empty($search->getName())) {
+        if (!empty($search->getName())) {
             $query = $query
                 ->andWhere('car.name LIKE :name')
                 ->setParameter('name', "%{$search->getName()}%");
         }
 
-        if(!empty($search->getCarCategory())) {
+        if (!empty($search->getCarCategory())) {
             $query = $query
                 ->andWhere('car.carCategory = :category')
                 ->setParameter('category', $search->getCarCategory());
         }
 
-        $query = $query->orderBy( 'car.name', 'DESC' );
+        $query = $query->orderBy('car.name', 'DESC');
 
         return $query->getQuery()->getResult();
     }

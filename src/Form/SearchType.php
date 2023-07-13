@@ -22,14 +22,14 @@ class SearchType extends AbstractType
                 'required' => false,
                 'attr' => ['placeholder' => 'Nom du véhicule'],
             ])
-            ->add( 'carCategory', EntityType::class, [
+            ->add('carCategory', EntityType::class, [
                 'label' => false,
-                'required'    => false,
-                'class'       => CarCategory::class,
-                'expanded'    => false,
-                'multiple'    => false,
+                'required' => false,
+                'class' => CarCategory::class,
+                'expanded' => false,
+                'multiple' => false,
                 'placeholder' => 'Sélectionner une catégorie',
-            ] )
+            ])
         ;
     }
 

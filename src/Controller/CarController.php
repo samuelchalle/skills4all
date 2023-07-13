@@ -17,7 +17,8 @@ class CarController extends AbstractController
 {
     public function __construct(
         private CarRepository $carRepository
-    ){}
+    ) {
+    }
 
     #[Route('/', name: 'app_car')]
     public function index(Request $request, PaginatorInterface $paginator): Response
@@ -28,8 +29,8 @@ class CarController extends AbstractController
         $query = $this->carRepository->findSearch($data);
         $cars = $paginator->paginate(
             $query, /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            20 /*limit per page*/,
+            $request->query->getInt('page', 1), /* page number */
+            20 /* limit per page */,
             ['wrap-queries' => true]
         );
 
