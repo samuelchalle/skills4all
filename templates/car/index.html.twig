@@ -22,7 +22,11 @@
                     </ul>
                 </div>
                 <div class="d-flex">
-                    Température : <span {{ stimulus_target('car', 'temperature') }}></span>
+                    <span {{ stimulus_target('car', 'temperature') }}>
+                        <div class="spinner-grow text-secondary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </span>
                 </div>
             </div>
         </nav>

@@ -12,19 +12,21 @@ export default class extends Controller {
             navigator.geolocation.getCurrentPosition(function(position) {
                 let latitude = position.coords.latitude;
                 let longitude = position.coords.longitude;
+                const url = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m";
 
-                // Envoyer les coordonnées à l’api météo
-
-
-                // Récupérer la température depuis le serveur
-
-
-                // Afficher la température dans la page
-                temperature.innerHTML = "22°C";
+                for (let i = 0; i < 24; i++) {
+                    fetch(url)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            temperature.innerHTML = "Température : " + data['current_weather']['temperature'] + "°C";
+                        });
+                    setTimeout(() => {
+                        console.log(temperature);
+                    }, 3600000);
+                }
             });
         } else {
-            // Gestion de l’absence de prise en charge de la géolocalisation par le navigateur
+            temperature.innerHTML = "La géolocalisation n'est pas supportée par ce navigateur.";
         }
     }
-
 }
