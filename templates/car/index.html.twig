@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car{% endblock %}
+
+{% block body %}
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div>
+            <div class="bg-light text-bg-light rounded-4 p-4 mb-4 mt-4">
+                <h1 class="text-center">Rechercher un véhicule</h1>
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col">
+                        {{ form_widget(form.name) }}
+                    </div>
+                    <div class="col">
+                        {{ form_widget(form.carCategory) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center m-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Rechercher</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+                <div class="row">
+                    <div class="col text-center">
+                        <h3><span class="badge bg-secondary">{{ cars.getTotalItemCount }}</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for car in cars %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ car.name }}</h5>
+                            <p class="card-text">Nombre de siège : {{ car.nbSeats }}</p>
+                            <p class="card-text">Nombre de portes : {{ car.nbDoors }}</p>
+                            <p class="card-text">Catégorie: {{ car.carCategory.name }}</p>
+                            <p class="card-text">Prix: {{ car.cost|format_currency('EUR', locale='fr') }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col col-12 d-flex justify-content-center m-2">
+                {{ knp_pagination_render(cars) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

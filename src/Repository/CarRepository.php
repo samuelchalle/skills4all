@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Car;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,28 +22,25 @@ class CarRepository extends ServiceEntityRepository
         parent::__construct($registry, Car::class);
     }
 
-//    /**
-//     * @return Car[] Returns an array of Car objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findSearch(SearchData $search): array
+    {
+        $query = $this
+            ->createQueryBuilder( 'car' );
 
-//    public function findOneBySomeField($value): ?Car
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if(!empty($search->getName())) {
+            $query = $query
+                ->andWhere('car.name LIKE :name')
+                ->setParameter('name', "%{$search->getName()}%");
+        }
+
+        if(!empty($search->getCarCategory())) {
+            $query = $query
+                ->andWhere('car.carCategory = :category')
+                ->setParameter('category', $search->getCarCategory());
+        }
+
+        $query = $query->orderBy( 'car.name', 'DESC' );
+
+        return $query->getQuery()->getResult();
+    }
 }

@@ -47,6 +47,9 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.2.0"
+    },
     "phpstan/phpstan": {
         "version": "1.10",
         "recipe": {
@@ -201,6 +204,9 @@
             "package.json",
             "webpack.config.js"
         ]
+    },
+    "twig/extra-bundle": {
+        "version": "v3.6.1"
     },
     "zenstruck/foundry": {
         "version": "1.34",
